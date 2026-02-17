@@ -543,18 +543,18 @@
             <h2>Get In Touch</h2>
             <p class="contact-intro">Interested in working together? Let's connect!</p>
 
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xerozor1@gmail.com" method="POST">
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required id="formName">
+                    <input type="text" name="name" placeholder="Your Name" required id="formName">
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Your Email" required id="formEmail">
+                    <input type="email" name="email" placeholder="Your Email" required id="formEmail">
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Subject" required id="formSubject">
+                    <input type="text" name="_subject" placeholder="Subject" required id="formSubject">
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Your Message" rows="5" required id="formMessage"></textarea>
+                    <textarea name="message" placeholder="Your Message" rows="5" required id="formMessage"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Message</button>
                 <p id="formStatus" class="form-status"></p>

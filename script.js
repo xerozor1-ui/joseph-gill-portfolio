@@ -135,10 +135,18 @@ if (contactForm) {
         }
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 800));
-            showStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
-            contactForm.reset();
-            setTimeout(() => { formStatus.className = 'form-status'; }, 5000);
+            const response = await fetch('https://formspree.io/f/xerozor1@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ name, email, _subject: subject, message })
+            });
+            if (response.ok) {
+                showStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
+                contactForm.reset();
+                setTimeout(() => { formStatus.className = 'form-status'; }, 5000);
+            } else {
+                showStatus('Failed to send. Please try again or email me directly.', 'error');
+            }
         } catch (error) {
             showStatus('An error occurred. Please try again.', 'error');
         }
