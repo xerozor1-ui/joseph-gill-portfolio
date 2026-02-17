@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Gill - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Joseph Gill</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-fade-in">Joseph Gill</h1>
+                <p class="animate-fade-in-delay">Quality Control Technician | Manufacturing Professional | Aspiring Automation Engineer</p>
+                <p class="hero-location animate-fade-in-delay-2">Warren, PA 16365</p>
+                <div class="hero-buttons animate-fade-in-delay-2">
+                    <a href="Resume.pdf" download class="btn btn-primary">Download Resume (PDF)</a>
+                    <a href="#dashboard" class="btn btn-outline">View Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                I am a motivated and versatile manufacturing professional currently working as a Quality Control Inspector 
+                while actively developing skills to become an automation engineer. I previously worked as a Production 
+                Coordinator, where I led two teams—an assembly team of 14 people and a powder coat team of 5—ensuring 
+                production flow, quality standards, and team performance.
+            </p>
+            <p>
+                Before that, I served as an Assembly Floater, mastering a wide range of assembly processes along with 
+                steel fabrication, powder coat finishing techniques, and quality control skills. I also bring a creative 
+                and technical background from my time as a graphic designer, where I created merchandise for various 
+                artists and worked directly with overseas factories to develop products such as clothing, art pins, and bags.
+            </p>
+            <p>
+                Earlier in my career, I worked as an Assembly Operator and backup Cell Leader in automated production 
+                environments, supporting multiple pick-and-place robots and ERP systems. I am currently enrolled in an 
+                Engineering Technology program pursuing an associate degree. My main goal is continuous self-improvement—building 
+                my skills, increasing my value, and ultimately improving my family's quality of life through hard work, 
+                learning, and long-term growth.
+            </p>
+            <a href="Resume.pdf" download class="btn btn-secondary">Download Resume (PDF)</a>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <h2>Dashboard</h2>
+            <div class="dashboard-grid">
+                <!-- Status Tile -->
+                <div class="dash-tile status-tile" draggable="true">
+                    <h3>Status</h3>
+                    <div class="status-indicator">
+                        <span class="status-dot inactive" id="statusDot"></span>
+                        <span class="status-text" id="statusText">Inactive</span>
+                    </div>
+                </div>
+
+                <!-- Live Clock Tile -->
+                <div class="dash-tile clock-tile" draggable="true">
+                    <h3>Live Clock</h3>
+                    <div class="clock-display" id="liveClock">--:--:--</div>
+                    <div class="clock-date" id="liveDate">--- --, ----</div>
+                </div>
+
+                <!-- Job Info Tile -->
+                <div class="dash-tile job-tile" draggable="true">
+                    <h3>Job Entry</h3>
+                    <div class="job-inputs">
+                        <div class="input-group">
+                            <label for="jobNumber">Job Number</label>
+                            <input type="text" id="jobNumber" placeholder="Enter Job #">
+                        </div>
+                        <div class="input-group">
+                            <label for="partNumber">Part Number</label>
+                            <input type="text" id="partNumber" placeholder="Enter Part #">
+                        </div>
+                        <div class="input-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" placeholder="Enter Qty" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OEE Tile -->
+                <div class="dash-tile oee-tile" draggable="true">
+                    <h3>OEE Metrics</h3>
+                    <div class="oee-metrics">
+                        <div class="oee-row">
+                            <span class="oee-label">Availability</span>
+                            <span class="oee-value" id="oeeAvailability">0 %</span>
+                        </div>
+                        <div class="oee-row">
+                            <span class="oee-label">Performance</span>
+                            <span class="oee-value" id="oeePerformance">0 %</span>
+                        </div>
+                        <div class="oee-row">
+                            <span class="oee-label">Quality</span>
+                            <span class="oee-value" id="oeeQuality">0 %</span>
+                        </div>
+                        <div class="oee-divider"></div>
+                        <div class="oee-row oee-total">
+                            <span class="oee-label">OEE</span>
+                            <span class="oee-value" id="oeeTotal">0 %</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Counter Tile -->
+                <div class="dash-tile counter-tile" draggable="true">
+                    <h3>Counter</h3>
+                    <div class="counter-display" id="counterDisplay">0</div>
+                    <button class="btn btn-primary counter-btn" id="counterBtn">Count +1</button>
+                </div>
+
+                <!-- Draggable Tile -->
+                <div class="dash-tile draggable-tile" id="draggableTile" draggable="true">
+                    <h3>Drag Me</h3>
+                    <div class="drag-message">
+                        <span class="drag-icon">✋</span>
+                        <p>Drag and drop me into the empty tile</p>
+                    </div>
+                </div>
+
+                <!-- Empty Drop Zone Tile -->
+                <div class="dash-tile drop-zone-tile" id="dropZone">
+                    <h3>Drop Zone</h3>
+                    <div class="drop-placeholder" id="dropPlaceholder">
+                        <span class="drop-icon">📥</span>
+                        <p>Drop here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="experience-list">
+
+                <!-- Job 1 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Quality Control Technician I</span>
+                            <span class="job-company">Blackstone Advanced Technologies — Jamestown, NY</span>
+                            <span class="job-date">September 2025 – Present</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Performed visual and dimensional inspections on finished products to verify conformance to customer requirements</li>
+                            <li>Conducted thorough inspections of incoming raw materials, ensuring compliance with quality standards and specifications</li>
+                            <li>Utilized precision measuring instruments such as calipers, micrometers, and gauges to perform accurate measurements</li>
+                            <li>Identified non-conforming products or materials and initiated corrective actions to prevent further production issues</li>
+                            <li>Collaborated with cross-functional teams including production, engineering, and suppliers to address quality concerns and implement effective solutions</li>
+                            <li>Created detailed inspection reports documenting findings, deviations from specifications, and recommended corrective actions</li>
+                            <li>Trained production line operators on proper quality control procedures and techniques to ensure consistent adherence to standards</li>
+                            <li>Maintained accurate records of inspection results, test data, and other relevant documentation for traceability purposes</li>
+                            <li>Assisted in the development of standard operating procedures (SOPs) related to quality control activities for improved consistency across shifts or departments</li>
+                            <li>Developed an automated data collection system to auto fill a PDF form</li>
+                            <li>Initiated regular calibration checks on measuring instruments to ensure accuracy and reliability of measurements</li>
+                            <li>Performing weld inspections</li>
+                            <li>Learning robotic welding processes and how to program them</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Assembly/Paint Production Coordinator</span>
+                            <span class="job-company">Matco Tools — Lakewood, NY</span>
+                            <span class="job-date">May 2023 – August 2025</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Coordinated assembly operations, overseeing work orders, ensuring accurate parts availability, and maintaining efficient workflow</li>
+                            <li>Led 2 teams—one of 14 employees and one of 5 employees—strategically assigning roles to maximize productivity and ensure team success</li>
+                            <li>Actively participated in KPI-driven events to identify areas for improvement and implement efficiency-enhancing solutions</li>
+                            <li>Conducted detailed finish work on powder-coated steel, including removing dents and scratches to ensure high-quality products</li>
+                            <li>Collaborated with cross-functional teams to troubleshoot issues and streamline production processes, resulting in improved output and reduced downtime</li>
+                            <li>Maintained a safe and organized work environment, ensuring compliance with safety protocols and quality standards</li>
+                            <li>Led a team of 4 powder coaters and a powder coat lead who applied automotive powder to toolboxes to achieve mirror-like finish; repaired Nordson powder coating equipment; operated Nordson auto booth system and quick change color system</li>
+                            <li>Inspected high-quality powder coat finishes using a thickness gauge to ensure proper coating standards</li>
+                            <li>Performed detailed visual inspections to identify surface flaws, defects, or inconsistencies</li>
+                            <li>Verified dimensions and squareness of corners to meet precision specifications</li>
+                            <li>Measured gaps between edges using feeler gauges to confirm proper spacing tolerances</li>
+                            <li>Checked face thickness, cutout dimensions, and curl measurements with calipers for accuracy</li>
+                            <li>Ensured all parts met strict quality control standards before approval for final assembly or shipment</li>
+                            <li>Wrote standard operating procedures for various processes to improve production time and quality of the product</li>
+                            <li>Performed risk assessments to determine the dangers involved in the areas in charge of</li>
+                            <li>Operated forklifts, banding equipment, and delivered palletized merchandise to shipping docks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Assembly Operator</span>
+                            <span class="job-company">Parallel Employment Group (Matco Tools) — Lakewood, NY</span>
+                            <span class="job-date">November 2022 – May 2023</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Assembled high-quality automotive powder coated toolboxes, including locks, drawers, handles, side trims, lockers, and top accessories</li>
+                            <li>Performed detailed quality checks and finish work, repairing powder coat scratches and removing dents in steel</li>
+                            <li>Operated forklifts, packaging systems, and banding machines to prepare and ship finished products</li>
+                            <li>Maintained strict adherence to safety standards and production requirements while ensuring top-tier product quality</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Operator</span>
+                            <span class="job-company">Cummins — Lakewood, NY</span>
+                            <span class="job-date">May 2021 – October 2022</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Installed critical diesel engine components including fuel pumps, flywheels, timing gears, ECMs, air intakes, camshafts, and pistons</li>
+                            <li>Operated overhead cranes and performed minor maintenance on robotic assembly equipment</li>
+                            <li>Served as backup cell lead, overseeing a team of 9 operators, delegating tasks, and ensuring production goals were met</li>
+                            <li>Enforced and practiced safety protocols including forklift safety, lockout/tagout, and ergonomics procedures</li>
+                            <li>Maintained high quality standards and efficiency in a fast-paced manufacturing environment</li>
+                            <li>Performed intensive quality checks on bearings, piston assemblies, camshaft, and timing gears</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 5 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Deli Cook / Cashier</span>
+                            <span class="job-company">Spike Dailey's Irish Pub — Dunkirk, NY</span>
+                            <span class="job-date">March 2019 – September 2019</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Seasonal cook and cashier position on the pier</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 6 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Dishwasher and Cook</span>
+                            <span class="job-company">Clarion Hotel by Choice Hotels — Dunkirk, NY</span>
+                            <span class="job-date">July 2018 – March 2019</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Performed cooking and cleaning duties in a hotel kitchen environment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 7 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Server</span>
+                            <span class="job-company">Denny's — Dunkirk, NY</span>
+                            <span class="job-date">January 2015 – March 2015</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Took orders and served food; cleaned tables and counters</li>
+                            <li>Ensured customers had everything they needed</li>
+                            <li>Kept everything stocked and ready to be served</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 8 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Dietary Aide</span>
+                            <span class="job-company">St. Vincent's Home — Dunkirk, NY</span>
+                            <span class="job-date">December 2014 – March 2015</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Did dishes, served food, and cleaned tables, floors, and counters</li>
+                            <li>Set all of the tables at the end of each meal</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 9 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Dietary Aide</span>
+                            <span class="job-company">Chautauqua County Home — Dunkirk, NY</span>
+                            <span class="job-date">May 2014 – December 2014</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Did dishes, made sandwiches, poured drinks</li>
+                            <li>Cleaned floors, counters, and carts</li>
+                            <li>Delivered food carts</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 10 -->
+                <div class="job-item">
+                    <button class="job-toggle" aria-expanded="false">
+                        <div class="job-header-info">
+                            <span class="job-title-text">Junior Counselor</span>
+                            <span class="job-company">Camp Onyahsha</span>
+                            <span class="job-date">2008 – 2009</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="job-details">
+                        <ul>
+                            <li>Served as a junior counselor at Camp Onyahsha</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI Tiles Section -->
+    <section id="kpis" class="kpis">
+        <div class="container">
+            <h2>Key Highlights</h2>
+            <div class="kpi-grid">
+                <div class="kpi-tile">
+                    <div class="kpi-number">10+</div>
+                    <div class="kpi-label">Years in Workforce</div>
+                </div>
+                <div class="kpi-tile">
+                    <div class="kpi-number">19+</div>
+                    <div class="kpi-label">Team Members Led</div>
+                </div>
+                <div class="kpi-tile">
+                    <div class="kpi-number">3</div>
+                    <div class="kpi-label">Technical Projects</div>
+                </div>
+                <div class="kpi-tile">
+                    <div class="kpi-number">35+</div>
+                    <div class="kpi-label">Skills</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Manufacturing &amp; Quality</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Quality Control</span>
+                        <span class="tag">Manufacturing Management</span>
+                        <span class="tag">Assembly Line</span>
+                        <span class="tag">Production Planning</span>
+                        <span class="tag">Blueprint Reading</span>
+                        <span class="tag">5S</span>
+                        <span class="tag">Continuous Improvement</span>
+                        <span class="tag">Compliance</span>
+                        <span class="tag">Packaging</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools &amp; Equipment</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Hand Tools</span>
+                        <span class="tag">Power Tools</span>
+                        <span class="tag">Calipers &amp; Micrometers</span>
+                        <span class="tag">Forklift</span>
+                        <span class="tag">Pallet Jack</span>
+                        <span class="tag">Industrial Equipment</span>
+                        <span class="tag">Overhead Cranes</span>
+                        <span class="tag">Manual Handling</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Software &amp; Technical</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Microsoft Excel</span>
+                        <span class="tag">Adobe Photoshop</span>
+                        <span class="tag">Adobe Illustrator</span>
+                        <span class="tag">MES Software</span>
+                        <span class="tag">Google Search Console</span>
+                        <span class="tag">Computer Literacy</span>
+                        <span class="tag">Report Writing</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Leadership &amp; Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Leadership</span>
+                        <span class="tag">Supervising Experience</span>
+                        <span class="tag">Production Supervisor</span>
+                        <span class="tag">Cross-functional Communication</span>
+                        <span class="tag">Interpersonal Skills</span>
+                        <span class="tag">Management</span>
+                        <span class="tag">Graphic Design</span>
+                        <span class="tag">Color Management</span>
+                        <span class="tag">Social Media Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Technical Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card has-video" data-video="Zone Control video.mp4">
+                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><span class="play-icon">&#9654;</span></div>
+                    <h3>Manufacturing Execution System (MES)</h3>
+                    <p>Developed a shop-floor MES-style application with interactive facility map, clickable work zones, and real-time job tracking. Implemented operator input forms, status tracking, and production visibility tools for material flow. Designed to improve routing awareness, reduce search time, and support KPI reporting for manufacturing operations.</p>
+                    <div class="project-tags">
+                        <span>Custom Built</span>
+                        <span>Shop Floor</span>
+                        <span>KPI Reporting</span>
+                    </div>
+                </div>
+                <div class="project-card has-video" data-video="Form Filler.mp4">
+                    <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"><span class="play-icon">&#9654;</span></div>
+                    <h3>Automated PDF Data Collection System</h3>
+                    <p>Built a Python-based tool to collect inspection data and auto-populate standardized PDF quality forms. Reduced manual data entry time and improved traceability of inspection records. Integrated structured input workflow for consistent reporting across shifts.</p>
+                    <div class="project-tags">
+                        <span>Python</span>
+                        <span>Automation</span>
+                        <span>Quality Forms</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <h3>Robotic Welding (In Progress)</h3>
+                    <p>Currently learning robotic weld programming, process parameters, and troubleshooting. Working with cold wire TIG systems and weld quality verification. Developing skills in robotic welding processes and programming.</p>
+                    <div class="project-tags">
+                        <span>Robotic Welding</span>
+                        <span>TIG</span>
+                        <span>In Progress</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" id="videoModalClose">&times;</button>
+            <video id="videoPlayer" controls></video>
+        </div>
+    </div>
+
+    <!-- Education & Certifications -->
+    <section id="education" class="education-section">
+        <div class="container">
+            <h2>Education &amp; Certifications</h2>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <h3>Engineering Technology Program</h3>
+                    <p>Associate Degree — Currently Enrolled</p>
+                </div>
+                <div class="edu-card">
+                    <h3>High School Diploma</h3>
+                    <p>Dunkirk Senior High School</p>
+                </div>
+                <div class="edu-card cert-card">
+                    <h3>Certifications</h3>
+                    <ul>
+                        <li>Forklift Certification</li>
+                        <li>Security Officer License</li>
+                        <li>Driver's License</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p class="contact-intro">Interested in working together? Let's connect!</p>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required id="formName">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required id="formEmail">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Subject" required id="formSubject">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" rows="5" required id="formMessage"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <p id="formStatus" class="form-status"></p>
+            </form>
+
+            <div class="social-links">
+                <a href="mailto:xerozor1@gmail.com">Email</a>
+                <a href="tel:+18145582767">Phone</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Joseph Gill. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
