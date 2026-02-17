@@ -1053,57 +1053,188 @@ section h2::after {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   HAMBURGER MENU
+   ============================================ */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 200;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger-line {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN — TABLET (768px)
    ============================================ */
 @media (max-width: 768px) {
-    .nav-links { gap: 12px; font-size: 13px; }
+    /* Hamburger visible */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Nav slides in from top */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 80px 20px 30px;
+        box-shadow: var(--shadow);
+        transform: translateY(-100%);
+        transition: transform 0.35s ease;
+        z-index: 150;
+    }
+
+    .nav-links.open {
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 14px 0;
+        font-size: 18px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-links a::after { display: none; }
+
+    /* Hero */
     .hero h1 { font-size: 36px; }
     .hero p { font-size: 18px; }
-    section h2 { font-size: 32px; }
+    .hero-location { font-size: 14px !important; }
+    section h2 { font-size: 30px; }
 
+    /* Dashboard */
     .dashboard-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* KPIs */
     .kpi-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 16px;
     }
 
+    /* Projects */
     .projects-grid { grid-template-columns: 1fr; }
 
+    /* Contact */
     .social-links {
         flex-direction: column;
         gap: 10px;
     }
-
     .social-links a { display: block; text-align: center; }
 
+    /* Experience */
     .job-toggle { padding: 14px 16px; }
     .job-title-text { font-size: 16px; }
     .clock-display { font-size: 28px; }
+
+    /* Video modal */
+    .video-modal-content { width: 95%; }
+    .video-modal-close { top: -35px; font-size: 1.8rem; }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN — PHONE (480px)
+   ============================================ */
 @media (max-width: 480px) {
-    .navbar .container { padding: 10px; }
+    .navbar .container { padding: 10px 15px; }
     .logo { font-size: 18px; }
-    .nav-links { gap: 8px; font-size: 11px; }
+
+    .hero { min-height: 80vh; padding: 40px 0; }
     .hero h1 { font-size: 28px; }
     .hero p { font-size: 14px; }
 
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
     }
 
     section { padding: 40px 0; }
-    section h2 { font-size: 24px; margin-bottom: 30px; }
+    section h2 { font-size: 24px; margin-bottom: 24px; }
 
+    /* Single column everything */
     .dashboard-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; gap: 20px; }
-    .kpi-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; gap: 16px; }
+    .kpi-grid { grid-template-columns: 1fr; gap: 12px; }
     .edu-grid { grid-template-columns: 1fr; }
+
     .counter-display { font-size: 42px; }
+
+    /* KPI tiles */
+    .kpi-tile { padding: 20px 15px; }
+    .kpi-number { font-size: 32px; }
+
+    /* Dashboard tiles */
+    .dashboard-tile { padding: 20px 15px; }
+
+    /* Project cards */
+    .project-card { margin: 0 0 16px; }
+    .project-tags { flex-wrap: wrap; gap: 6px; }
+    .project-tags span { font-size: 11px; padding: 4px 8px; }
+
+    /* Experience */
+    .job-toggle { padding: 12px 14px; }
+    .job-title-text { font-size: 14px; }
+    .job-date { font-size: 11px; }
+    .job-details { padding: 12px 14px; }
+    .job-details li { font-size: 13px; }
+
+    /* Contact form */
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 16px; /* prevents iOS zoom */
+    }
+
+    /* Skills tags */
+    .tag { font-size: 12px; padding: 5px 10px; }
+
+    /* About text */
+    .about p { font-size: 15px; }
+
+    /* Footer */
+    footer { padding: 20px 15px; font-size: 13px; }
 }
 
 /* ============================================
