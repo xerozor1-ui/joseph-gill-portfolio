@@ -1,3 +1,19 @@
+# Personal documents. This repo is published as a public website, so
+# everything committed here is downloadable by anyone. Block PDFs and
+# office docs by default; the resume is the one deliberate exception.
+*.pdf
+!Resume.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+
+# Personal / work folders that live alongside this site locally
+Interview binder/
+materials/
+r211 app v2/
+vertex op prop/
+
 # OS Files
 .DS_Store
 Thumbs.db
