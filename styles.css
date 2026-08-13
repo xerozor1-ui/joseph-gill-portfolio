@@ -753,9 +753,16 @@ section h2::after {
 }
 
 .job-details.open {
-    max-height: 800px;
+    max-height: 2000px;
     padding: 20px 24px;
     border-top: 1px solid var(--border-color);
+}
+
+.job-summary {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
 }
 
 .job-details ul {
@@ -948,12 +955,12 @@ section h2::after {
     font-size: 15px;
 }
 
-.cert-card ul {
+.edu-card ul {
     list-style: none;
     padding: 0;
 }
 
-.cert-card li {
+.edu-card li {
     padding: 6px 0;
     color: var(--text-secondary);
     font-size: 15px;
@@ -961,12 +968,61 @@ section h2::after {
     padding-left: 20px;
 }
 
-.cert-card li::before {
-    content: '✓';
+.edu-card li::before {
+    content: '▸';
     position: absolute;
     left: 0;
-    color: var(--green);
+    color: var(--primary-color);
     font-weight: 700;
+}
+
+.cert-card li::before {
+    content: '✓';
+    color: var(--green);
+}
+
+/* ============================================
+   PROFESSIONAL STRENGTHS SECTION
+   ============================================ */
+.strengths { background-color: var(--bg-secondary); }
+
+.strengths-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.strengths-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.strengths-list li {
+    position: relative;
+    padding: 10px 0 10px 28px;
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.strengths-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.focus-heading {
+    text-align: center;
+    font-size: 22px;
+    color: var(--primary-color);
+    margin: 50px 0 24px;
+}
+
+.focus-tags {
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* ============================================
